@@ -1,9 +1,9 @@
-package com.example.video_solution
+package com.example.video_solution.playlist
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 
 
@@ -14,7 +14,7 @@ import com.example.video_solution.databinding.PlaylistItemBinding
  * TODO: Replace the implementation with code for your data type.
  */
 class MyPlaylistRecyclerViewAdapter(
-    private val values: List<PlaceholderItem>
+    private val values: List<Playlist>
 ) : RecyclerView.Adapter<MyPlaylistRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,19 +31,22 @@ class MyPlaylistRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+
+        holder.playlistName.text=item.name
+        holder.playlistCategory.text=item.category
+        holder.playlistImage.setImageResource(item.image)
     }
 
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolder(binding: PlaylistItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        val idView: TextView = binding.itemNumber
-        val contentView: TextView = binding.content
+        val playlistName: TextView = binding.playlistName
+        val playlistCategory: TextView = binding.playlistCategory
+        val playlistImage: ImageView = binding.playlistImage
 
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
-        }
+//        override fun toString(): String {
+//            return super.toString() + " '" + contentView.text + "'"
+//        }
     }
 
 }

@@ -12,6 +12,7 @@ import androidx.test.rule.ActivityTestRule
 import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.schibsted.spain.barista.internal.matcher.DrawableMatcher.Companion.withDrawable
+import org.hamcrest.CoreMatchers.allOf
 
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeMatcher
@@ -20,7 +21,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Rule
-import java.util.EnumSet.allOf
+
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -43,21 +44,28 @@ class PlaylistFeature {
 
     @Test
     fun displaysListOfPlaylists(){
+
+        Thread.sleep(4000)
+
+
+
         assertRecyclerViewItemCount(R.id.playlists_list, 10)
 
         //user expresso para el test de vistas ?? allof de a id de color de difetentes valores
-        onView(allOf(withId(R.id.playlist_name), isDescendantOfA(nthChildOf(withId(R.id.playlist_list),0))))
+        onView(allOf(withId(R.id.playlist_name), isDescendantOfA(nthChildOf(withId(R.id.playlists_list),0))))
             .check(matches(withText("Hard Rock Cafe")))
             .check(matches(isDisplayed()))
 
-        onView(allOf(withId(R.id.playlist_catergory), isDescendantOfA(nthChildOf(withId(R.id.playlist_list),0))))
+        onView(allOf(withId(R.id.playlist_category), isDescendantOfA(nthChildOf(withId(R.id.playlists_list),0))))
             .check(matches(withText("rock")))
             .check(matches(isDisplayed()))
 
-        onView(allOf(withId(R.id.playlist_catergory), isDescendantOfA(nthChildOf(withId(R.id.playlist_list),0))))
+        onView(allOf(withId(R.id.playlist_image), isDescendantOfA(nthChildOf(withId(R.id.playlists_list),0))))
             .check(matches(withDrawable(R.mipmap.playlist)))
             .check(matches(isDisplayed()))
     }
+
+
 
     fun nthChildOf(parentMatcher: org.hamcrest.Matcher<View>, childPosition: Int):org.hamcrest.Matcher<View>{
 
