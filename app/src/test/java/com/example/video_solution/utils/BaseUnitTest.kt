@@ -5,8 +5,8 @@ import org.junit.Rule
 
 open class BaseUnitTest {
 
-    @get:Rule
-    var coroutinesTestRule = MainCoroutineScopeRule()
+//    @get:Rule
+//    var coroutinesTestRule = MainCoroutineScopeRule()
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
